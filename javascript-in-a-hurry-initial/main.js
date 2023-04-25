@@ -15,6 +15,45 @@ const galleryImages = [
     }
 ];
 
+const products = [
+    {
+        title: "AstroFiction",
+        author: "John Doe",
+        price: 49.9,
+        image: "./assets/products/img6.png"
+    },
+    {
+        title: "Space Odissey",
+        author: "Marie Anne",
+        price: 35,
+        image: "./assets/products/img1.png"
+    },
+    {
+        title: "Doomed City",
+        author: "Jason Cobert",
+        price: 0,
+        image: "./assets/products/img2.png"
+    },
+    {
+        title: "Black Dog",
+        author: "John Doe",
+        price: 85.35,
+        image: "./assets/products/img3.png"
+    },
+    {
+        title: "My Little Robot",
+        author: "Pedro Paulo",
+        price: 0,
+        image: "./assets/products/img5.png"
+    },
+    {
+        title: "Garden Girl",
+        author: "Ankit Patel",
+        price: 45,
+        image: "./assets/products/img4.png"
+    }
+]
+
 
 // Menu section
 
@@ -114,9 +153,41 @@ const galleryHandler = () => {
     });
 }
 
+//Products Section
+/* <div class="product-item">
+    <img src="./assets/products/img6.png" alt="AstroFiction">
+    <div class="product-details">
+    <h3 class="product-title">AstroFiction</h3>
+    <p class="product-author">John Doe</p>
+    <p class="price-title">Price</p>
+    <p class="product-price">$ 49.90</p>
+    </div>
+</div> */
+
+const productHandler = () => {
+    const productArea = document.querySelector('.products-area');
+
+    for(product of products) {
+        productArea.innerHTML += `
+            <div class="product-item">
+                <img src="${product.image}" alt="${product.title}">
+                <div class="product-details">
+                    <h3 class="product-title">${product.title}</h3>
+                    <p class="product-author">${product.author}</p>
+                    <p class="price-title">Price</p>
+                    <p class="product-price">$ ${product.price}</p>
+                </div>
+            </div> 
+        `
+    }
+
+}
+
+
 //Page Load
 
 menuHandler();
 greetingHandler();
 clockHandler();
 galleryHandler();
+productHandler();
