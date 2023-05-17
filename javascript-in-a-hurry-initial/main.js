@@ -157,32 +157,91 @@ const galleryHandler = () => {
 /* <div class="product-item">
     <img src="./assets/products/img6.png" alt="AstroFiction">
     <div class="product-details">
-    <h3 class="product-title">AstroFiction</h3>
-    <p class="product-author">John Doe</p>
-    <p class="price-title">Price</p>
-    <p class="product-price">$ 49.90</p>
+        <h3 class="product-title">AstroFiction</h3>
+        <p class="product-author">John Doe</p>
+        <p class="price-title">Price</p>
+        <p class="product-price">$ 49.90</p>
     </div>
 </div> */
 
-const productHandler = () => {
+// const productHandler = () => {
+//     const productArea = document.querySelector('.products-area');
+
+//     for(product of products) {
+//         productArea.innerHTML += `
+//             <div class="product-item">
+//                 <img src="${product.image}" alt="${product.title}">
+//                 <div class="product-details">
+//                     <h3 class="product-title">${product.title}</h3>
+//                     <p class="product-author">${product.author}</p>
+//                     <p class="price-title">Price</p>
+//                     <p class="product-price">$ ${product.price}</p>
+//                 </div>
+//             </div> 
+//         `
+//     }
+// }
+
+const productHandler = (prodsArray) => {
     const productArea = document.querySelector('.products-area');
 
-    for(product of products) {
-        productArea.innerHTML += `
-            <div class="product-item">
-                <img src="${product.image}" alt="${product.title}">
-                <div class="product-details">
-                    <h3 class="product-title">${product.title}</h3>
-                    <p class="product-author">${product.author}</p>
-                    <p class="price-title">Price</p>
-                    <p class="product-price">$ ${product.price}</p>
-                </div>
-            </div> 
-        `
-    }
+    for (product of prodsArray) {
+        
+        //item
+        const productItem = document.createElement('div');
+        productItem.classList.add('product-item');
 
+        //img
+        const productImg = document.createElement('img');
+        productImg.src = product.image;
+        productImg.alt = `Image for ${product.title}`;
+        
+
+        //details
+        const prodDetails = document.createElement('div');
+        prodDetails.classList.add('product-details');
+        
+        const prodTitle = document.createElement('h3');
+        prodTitle.classList.add('product-title');
+        prodTitle.innerText = product.title;
+
+        const prodAuthor = document.createElement('p');
+        prodAuthor.classList.add('product-author');
+        prodAuthor.innerText = product.author;
+
+        const priceTitle = document.createElement('p');
+        priceTitle.classList.add('price-title');
+        priceTitle.innerText = 'Price';
+
+        const prodPrice = document.createElement('p');
+        prodPrice.classList.add('product-price');
+        prodPrice.innerText = product.price >0 ? `$${product.price.toFixed(2)}` : 'Free';
+
+        //appending prod details into prodDetails div
+        prodDetails.appendChild(prodTitle);
+        prodDetails.appendChild(prodAuthor);
+        prodDetails.appendChild(priceTitle);
+        prodDetails.appendChild(prodPrice);
+
+        //appending children to the productItem
+        productItem.appendChild(productImg);
+        productItem.appendChild(prodDetails);
+
+        //appending productItem to product Area
+        productArea.appendChild(productItem);
+    }
 }
 
+
+const paidProds = products.filter(product => {
+    return product.price > 0
+});
+
+const freeProds = products.filter(product => {
+    return product.price === 0;
+});
+
+console.log(freeProds);
 
 //Page Load
 
@@ -190,4 +249,4 @@ menuHandler();
 greetingHandler();
 clockHandler();
 galleryHandler();
-productHandler();
+productHandler(products);
