@@ -234,33 +234,35 @@ const productHandler = (prodsArray) => {
 }
 
 
-const paidProds = products.filter(product => {
-    return product.price > 0
-});
-
-const freeProds = products.filter(product => {
-    return product.price === 0;
-});
-
-
-const prodsFilter = document.querySelectorAll('.products-filter input');
-
-
-prodsFilter.forEach(prod => {
-    prod.addEventListener('click', (e) => {
-        productHandler([]);
-        switch (e.target.id) {
-            case 'paid':
-                productHandler(paidProds);
-                break;
-            case 'free':
-                productHandler(freeProds);
-                break;
-            default:
-                productHandler(products);
-        }
+const filterHandler = () => {
+    const paidProds = products.filter(product => {
+        return product.price > 0
     });
-});
+    
+    const freeProds = products.filter(product => {
+        return product.price === 0;
+    });
+    
+    const prodsFilter = document.querySelectorAll('.products-filter input');
+    
+    
+    prodsFilter.forEach(prod => {
+        prod.addEventListener('click', (e) => {
+            productHandler([]);
+            switch (e.target.id) {
+                case 'paid':
+                    productHandler(paidProds);
+                    break;
+                case 'free':
+                    productHandler(freeProds);
+                    break;
+                default:
+                    productHandler(products);
+            }
+        });
+    });
+}
+
 
 //Page Load
 
@@ -269,5 +271,6 @@ greetingHandler();
 clockHandler();
 galleryHandler();
 productHandler(products);
+filterHandler();
 
 //TO DO -> add event listener to change array for filtered one depending on event target -> paid or free
