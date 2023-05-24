@@ -123,7 +123,6 @@ const clockHandler = () => {
 
 
 //Gallery section
-//src="./assets/gallery/image1.jpg" alt="Thumbnail Image 1"
 
 const galleryHandler = () => {
     const mainImg = document.querySelector("#gallery > img");
@@ -154,37 +153,19 @@ const galleryHandler = () => {
 }
 
 //Products Section
-/* <div class="product-item">
-    <img src="./assets/products/img6.png" alt="AstroFiction">
-    <div class="product-details">
-        <h3 class="product-title">AstroFiction</h3>
-        <p class="product-author">John Doe</p>
-        <p class="price-title">Price</p>
-        <p class="product-price">$ 49.90</p>
-    </div>
-</div> */
-
-// const productHandler = () => {
-//     const productArea = document.querySelector('.products-area');
-
-//     for(product of products) {
-//         productArea.innerHTML += `
-//             <div class="product-item">
-//                 <img src="${product.image}" alt="${product.title}">
-//                 <div class="product-details">
-//                     <h3 class="product-title">${product.title}</h3>
-//                     <p class="product-author">${product.author}</p>
-//                     <p class="price-title">Price</p>
-//                     <p class="product-price">$ ${product.price}</p>
-//                 </div>
-//             </div> 
-//         `
-//     }
-// }
 
 const productHandler = (prodsArray) => {
     const productArea = document.querySelector('.products-area');
     productArea.innerHTML = '';
+    
+    const paidProds = products.filter(product => {
+        return product.price > 0
+    });
+
+    const freeProds = products.filter(product => {
+        return !product.price || product.price <= 0;
+    });
+
 
     for (product of prodsArray) {
         
@@ -231,6 +212,10 @@ const productHandler = (prodsArray) => {
         //appending productItem to product Area
         productArea.appendChild(productItem);
     }
+
+    document.querySelector('.products-filter label[for=all] span.product-amount').textContent = products.length;
+    document.querySelector('.products-filter label[for=paid] span.product-amount').textContent = paidProds.length;
+    document.querySelector('.products-filter label[for=free] span.product-amount').textContent = freeProds.length;
 }
 
 
@@ -240,26 +225,24 @@ const filterHandler = () => {
     });
     
     const freeProds = products.filter(product => {
-        return product.price === 0;
+        return !product.price || product.price === 0;
     });
     
-    const prodsFilter = document.querySelectorAll('.products-filter input');
-    
-    
-    prodsFilter.forEach(prod => {
-        prod.addEventListener('click', (e) => {
-            productHandler([]);
-            switch (e.target.id) {
-                case 'paid':
-                    productHandler(paidProds);
-                    break;
-                case 'free':
-                    productHandler(freeProds);
-                    break;
-                default:
-                    productHandler(products);
-            }
-        });
+    const prodsFilter = document.querySelector('.products-filter');
+
+    prodsFilter.addEventListener('click', (e) => {
+        productHandler([]);
+        switch (e.target.id) {
+            case 'paid':
+                productHandler(paidProds);
+                break;
+            case 'free':
+                productHandler(freeProds);
+                break;
+            default:
+                productHandler(products);
+        }
+
     });
 }
 
