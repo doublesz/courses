@@ -154,21 +154,10 @@ const galleryHandler = () => {
 
 //Products Section
 
-const productHandler = (prodsArray) => {
+const populateProducts = (prodsArray) => {
     const productArea = document.querySelector('.products-area');
     productArea.innerHTML = '';
-    
-    const paidProds = products.filter(product => {
-        return product.price > 0
-    });
-
-    const freeProds = products.filter(product => {
-        return !product.price || product.price <= 0;
-    });
-
-
     for (product of prodsArray) {
-        
         //item
         const productItem = document.createElement('div');
         productItem.classList.add('product-item');
@@ -178,7 +167,6 @@ const productHandler = (prodsArray) => {
         productImg.src = product.image;
         productImg.alt = `Image for ${product.title}`;
         
-
         //details
         const prodDetails = document.createElement('div');
         prodDetails.classList.add('product-details');
@@ -213,38 +201,38 @@ const productHandler = (prodsArray) => {
         productArea.appendChild(productItem);
     }
 
+}
+
+const productHandler = () => {
+    populateProducts(products);
+
+    const paidProds = products.filter(product => {
+        return product.price > 0
+    });
+
+    const freeProds = products.filter(product => {
+        return !product.price || product.price <= 0;
+    });
+
+    const prodsFilter = document.querySelector('.products-filter');
+    prodsFilter.addEventListener('click', (e) => {
+        switch (e.target.id) {
+            case 'paid':
+                populateProducts(paidProds);
+                break;
+            case 'free':
+                populateProducts(freeProds);
+                break;
+            default:
+                populateProducts(products);
+        }
+    });
+    
     document.querySelector('.products-filter label[for=all] span.product-amount').textContent = products.length;
     document.querySelector('.products-filter label[for=paid] span.product-amount').textContent = paidProds.length;
     document.querySelector('.products-filter label[for=free] span.product-amount').textContent = freeProds.length;
 }
 
-
-const filterHandler = () => {
-    const paidProds = products.filter(product => {
-        return product.price > 0
-    });
-    
-    const freeProds = products.filter(product => {
-        return !product.price || product.price === 0;
-    });
-    
-    const prodsFilter = document.querySelector('.products-filter');
-
-    prodsFilter.addEventListener('click', (e) => {
-        productHandler([]);
-        switch (e.target.id) {
-            case 'paid':
-                productHandler(paidProds);
-                break;
-            case 'free':
-                productHandler(freeProds);
-                break;
-            default:
-                productHandler(products);
-        }
-
-    });
-}
 
 
 //Page Load
@@ -253,7 +241,4 @@ menuHandler();
 greetingHandler();
 clockHandler();
 galleryHandler();
-productHandler(products);
-filterHandler();
-
-//TO DO -> add event listener to change array for filtered one depending on event target -> paid or free
+productHandler();
