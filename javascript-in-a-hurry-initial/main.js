@@ -234,7 +234,7 @@ const footerHandler = () => {
 }
 
 
-navigator.geolocation.getCurrentPosition(function(position){
+navigator.geolocation.getCurrentPosition(position => {
     console.log(position);
 });
 
