@@ -206,13 +206,8 @@ const populateProducts = (prodsArray) => {
 const productHandler = () => {
     populateProducts(products);
 
-    const paidProds = products.filter(product => {
-        return product.price > 0
-    });
-
-    const freeProds = products.filter(product => {
-        return !product.price || product.price <= 0;
-    });
+    const paidProds = products.filter(product => product.price > 0);
+    const freeProds = products.filter(product => !product.price || product.price <= 0);
 
     const prodsFilter = document.querySelector('.products-filter');
     prodsFilter.addEventListener('click', (e) => {
@@ -233,7 +228,15 @@ const productHandler = () => {
     document.querySelector('.products-filter label[for=free] span.product-amount').textContent = freeProds.length;
 }
 
+const footerHandler = () => {
+    let currentYear = new Date().getFullYear();
+    document.querySelector('footer').textContent = `© ${currentYear} - All rights reserved`;
+}
 
+
+navigator.geolocation.getCurrentPosition(function(position){
+    console.log(position);
+});
 
 //Page Load
 
@@ -242,3 +245,4 @@ greetingHandler();
 clockHandler();
 galleryHandler();
 productHandler();
+footerHandler();
