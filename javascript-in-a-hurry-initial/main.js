@@ -234,8 +234,11 @@ const footerHandler = () => {
 }
 
 
-navigator.geolocation.getCurrentPosition(position => {
-    console.log(position);
+navigator.geolocation.getCurrentPosition(async position => {
+    const response = await fetch('https://opentdb.com/api.php?amount=1');
+    const jsonData = await response.json();
+    console.log(jsonData);
+    console.log(`q: ${jsonData.results[0].question}, a: ${jsonData.results[0].correct_answer}`);
 });
 
 //Page Load
