@@ -1,4 +1,6 @@
 //Global variables
+const weatherAPIKey = 'd096e4050a577804638e8c9dc5f6141f';
+const weatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={API key}';
 
 const galleryImages = [
     {
@@ -235,10 +237,16 @@ const footerHandler = () => {
 
 
 navigator.geolocation.getCurrentPosition(async position => {
-    const response = await fetch('https://opentdb.com/api.php?amount=1');
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    const url = weatherUrl
+        .replace("{lat}", latitude)
+        .replace("{lon}", longitude)
+        .replace("{API key}", weatherAPIKey);
+
+    const response = await fetch(url);
     const jsonData = await response.json();
     console.log(jsonData);
-    console.log(`q: ${jsonData.results[0].question}, a: ${jsonData.results[0].correct_answer}`);
 });
 
 //Page Load
