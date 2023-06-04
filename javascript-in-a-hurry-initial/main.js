@@ -1,6 +1,7 @@
 //Global variables
 const weatherAPIKey = 'd096e4050a577804638e8c9dc5f6141f';
-const weatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={API key}';
+const weatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={API key}&units=metric';
+const locationUrl = 'http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit=5&appid={API key}'
 
 const galleryImages = [
     {
@@ -92,24 +93,7 @@ const greetingHandler = () => {
         greetingText = 'Welcome!';
     }
 
-    const weatherCondition = "sunny";
-    const userLocation = "Rio de Janeiro";
-    let temperature = 33;
-    let celsiusText = `The weather is ${weatherCondition} in ${userLocation} and it's ${temperature.toFixed(1)}°C outside.`;
-    let fahrText = `The weather is ${weatherCondition} in ${userLocation} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
-
-    //temperature Switch
-
     document.querySelector("#greeting").innerHTML = greetingText;
-    document.querySelector("p#weather").innerHTML = celsiusText;
-
-    document.querySelector('.weather-group').addEventListener("click", function(e) {
-        if(e.target.id === 'fahr') {
-            document.querySelector("p#weather").innerHTML = fahrText;
-        } else if(e.target.id === 'celsius'){
-            document.querySelector("p#weather").innerHTML = celsiusText;
-        }
-    });
 }
 
 //Local time section
@@ -237,17 +221,43 @@ const footerHandler = () => {
 
 
 navigator.geolocation.getCurrentPosition(async position => {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    const url = weatherUrl
+    let { latitude, longitude, accuracy } = position.coords;
+    const locationAPIUrl = locationUrl
         .replace("{lat}", latitude)
         .replace("{lon}", longitude)
         .replace("{API key}", weatherAPIKey);
 
-    const response = await fetch(url);
-    const jsonData = await response.json();
-    console.log(jsonData);
-});
+    const locationRes = await fetch(locationAPIUrl);
+    const locationData = await locationRes.json();
+    const location = locationData[0].name;
+
+    const weatherAPIUrl = weatherUrl
+        .replace("{lat}", latitude)
+        .replace("{lon}", longitude)
+        .replace("{API key}", weatherAPIKey);
+
+    const weatherRes = await fetch(weatherAPIUrl);
+    const weatherData = await weatherRes.json();
+    const temperature = weatherData.current.temp;
+    const condition = weatherData.current.weather[0].description;
+
+    let celsiusText = `The weather is ${condition} in ${location} and it's ${temperature.toFixed(1)}°C outside.`;
+    let fahrText = `The weather is ${condition} in ${location} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
+
+    //temperature Switch
+
+    document.querySelector("p#weather").innerHTML = celsiusText;
+
+    document.querySelector('.weather-group').addEventListener("click", function(e) {
+        if(e.target.id === 'fahr') {
+            document.querySelector("p#weather").innerHTML = fahrText;
+        } else if(e.target.id === 'celsius'){
+            document.querySelector("p#weather").innerHTML = celsiusText;
+        }
+    });
+
+},null,{enableHighAccuracy: true});
+
 
 //Page Load
 
