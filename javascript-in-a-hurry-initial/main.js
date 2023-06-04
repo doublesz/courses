@@ -1,5 +1,5 @@
 //Global variables
-const weatherAPIKey = 'd096e4050a577804638e8c9dc5f6141f';
+const weatherAPIKey = './dotenv.SECRET_TOKEN';
 const weatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={API key}&units=metric';
 const locationUrl = 'http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit=5&appid={API key}'
 
