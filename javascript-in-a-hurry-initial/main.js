@@ -119,21 +119,26 @@ const weatherHandler = () => {
         const weatherData = await weatherRes.json();
         const temperature = weatherData.current.temp;
         const condition = weatherData.current.weather[0].description;
-    
-        let celsiusText = `The weather is ${condition} in ${location} and it's ${temperature.toFixed(1)}°C outside.`;
-        let fahrText = `The weather is ${condition} in ${location} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
-    
-        //temperature Switch
-    
-        document.querySelector("p#weather").innerHTML = celsiusText;
-    
-        document.querySelector('.weather-group').addEventListener("click", function(e) {
-            if(e.target.id === 'fahr') {
-                document.querySelector("p#weather").innerHTML = fahrText;
-            } else if(e.target.id === 'celsius'){
-                document.querySelector("p#weather").innerHTML = celsiusText;
-            }
-        });
+
+        try {
+            let celsiusText = `The weather is ${condition} in ${location} and it's ${temperature.toFixed(1)}°C outside.`;
+            let fahrText = `The weather is ${condition} in ${location} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
+        
+            //temperature Switch
+        
+            document.querySelector("p#weather").innerHTML = celsiusText;
+        
+            document.querySelector('.weather-group').addEventListener("click", function(e) {
+                if(e.target.id === 'fahr') {
+                    document.querySelector("p#weather").innerHTML = fahrText;
+                } else if(e.target.id === 'celsius'){
+                    document.querySelector("p#weather").innerHTML = celsiusText;
+                }
+            });
+        } catch (err) {
+            console.log ("Error: ", err.message);
+            document.querySelector("p#weather").innerHTML = "Unable to get the weather info. Try again later.";
+        }
     
     });
 }
