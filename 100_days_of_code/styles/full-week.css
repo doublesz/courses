@@ -1,6 +1,7 @@
 h1 {
     font-size: 48px;
     color: rgb(71, 62, 62);
+    margin: 12px 0;
 }
 
 a {
@@ -8,7 +9,7 @@ a {
     color: white;
     border-radius: 4px;
     font-size: 24px;
-    padding: 12px;
+    padding: 12px 48px;
 }
 
 a:hover {
@@ -18,10 +19,14 @@ a:hover {
 
 ol {
     list-style: none;
+    padding: 0;
+    margin: 36px auto 0 auto;
+    width: 500px;
 }
 
 li {
     margin: 32px;
     border-radius: 6px;
     background-color: rgb(223, 136, 124);
+    padding: 16px;
 }
