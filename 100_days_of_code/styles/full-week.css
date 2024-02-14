@@ -4,6 +4,14 @@ h1 {
     margin: 12px 0;
 }
 
+/* #description {
+    margin-bottom: 36px;
+} */
+
+header p {
+    margin-bottom: 36px;
+}
+
 a {
     background-color: rgb(167, 1, 78);
     color: white;
@@ -29,4 +37,14 @@ li {
     border-radius: 6px;
     background-color: rgb(223, 136, 124);
     padding: 16px;
+}
+
+h2 {
+    color: rgb(78, 13, 5);
+    font-family: 'Oswald', sans-serif;
+}
+
+.daily-goal {
+    margin: 12px;
+    color: rgb(71, 29, 22);
 }
