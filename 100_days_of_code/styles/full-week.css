@@ -1,16 +1,17 @@
+header {
+    margin-bottom: 64px;
+}
+
 h1 {
     font-size: 48px;
     color: rgb(71, 62, 62);
     margin: 12px 0;
 }
 
-/* #description {
-    margin-bottom: 36px;
-} */
-
-header p {
+#description {
     margin-bottom: 36px;
 }
+
 
 a {
     background-color: rgb(167, 1, 78);
@@ -44,7 +45,11 @@ h2 {
     font-family: 'Oswald', sans-serif;
 }
 
-.daily-goal {
+main p {
     margin: 12px;
     color: rgb(71, 29, 22);
+}
+
+.highlight-goal {
+    background-color: rgb(226, 115, 101);
 }
