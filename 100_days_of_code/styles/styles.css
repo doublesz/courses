@@ -3,17 +3,17 @@ body {
     text-align: center;
     font-family: 'Fira Sans', sans-serif;
     color: rgb(83, 75, 75);
+    margin: 50px;
 }
 
 
 h1 {
     font-family: 'Oswald', sans-serif;
-    color: rgb(0, 128, 128);
 }
 
-/* p {
-    margin-bottom: 36px;
-} */
+p {
+    font-size: 24px;
+}
 
 a {
     color: rgb(167, 1, 78);
