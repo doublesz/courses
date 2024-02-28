@@ -1,13 +1,13 @@
 body {
     background-color: rgb(230, 230, 255);
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     text-align: center;
 }
 
 h1 {
     color: rgb(100, 45, 200);
     font-size: 40px;
-} 
+}
 
 img {
     width: 250px;
@@ -34,12 +34,12 @@ ul {
 li {
     margin: 10px 0;
     padding-left: 15px;
-    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-left: 4px solid transparent;
 }
 
 .highlighted {
     color: rgb(235, 210, 137);
-    border-left: 4px solid rgb(235, 220, 137);
+    border-color: rgb(235, 220, 137);
 }
 
 a {
@@ -50,6 +50,11 @@ a {
     color: rgb(11, 11, 66);
 }
 
+a:hover,
+a:active {
+    background-color: rgb(250, 201, 39);
+}
+
 button {
     border: none;
     border-radius: 5px;
@@ -57,7 +62,14 @@ button {
     background-color: rgb(235, 184, 18);
 }
 
-button a {
+button:hover,
+button:active {
+    background-color: rgb(255, 186, 58);
+}
+
+button a,
+button a:hover,
+button a:active {
     background: none;
 }
 
