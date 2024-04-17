@@ -70,6 +70,7 @@
 .destination {
     margin: 0 20px;
     text-transform: uppercase;
+    width: 100%;
 }
 
 .destination p {
@@ -80,7 +81,7 @@
 }
 
 .destination img {
-    height: 300px;
+    height: 200px;
     width: 100%;
     margin: 25px 0 10px 0;
     box-shadow: 2px 4px 8px rgb(68, 67, 67);
