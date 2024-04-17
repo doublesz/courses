@@ -56,7 +56,18 @@ a {
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
-/* #highlights {
-    background-color: rgb(55, 251, 230);
-    height: 100px;
-} */
+footer {
+    background: linear-gradient(70deg, rgb(24, 24, 24), rgb(25, 29, 29));
+    padding: 10px;
+}
+
+footer ul {
+    display: flex;
+    width: 15%;
+    margin: auto;
+    justify-content: space-around;
+}
+
+footer img {
+    width: 100px;
+}
