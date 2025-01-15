@@ -3,12 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./styles/style.css">
-        <title>Browse Your meals</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./styles/style.css" />
+        <title>WebFood</title>
     </head>
     <body>
-        <header>
-            <h2>WEBFOOD</h2>
+        <header id="main-header">
+            <a href="index.html" id="logo">WebFood</a>
             <nav>
                 <ul>
                     <li>
@@ -22,24 +27,30 @@
         </header>
         <main>
             <h1>Browse Our Delicious Meals</h1>
-            <section>
+            <section id="latest-products">
                 <ul>
-                    <li>
+                    <li class="food-items">
                         <article>
-                            <img src="" alt="" />
-                            <h2>Risotto with Tiger Prawns</h2>
-                            <button>
-                                <a href="#">Add to Cart</a>
-                            </button>
+                            <img
+                                src="./images/risotto.jpg"
+                                alt="Delicious risotto with Tiger Prawns"
+                            />
+                            <div class="food-item-content">
+                                <h2>Risotto with Tiger Prawns</h2>
+                                <a href="#" class="btn">Add to Cart</a>
+                            </div>
                         </article>
                     </li>
-                    <li>
+                    <li class="food-items">
                         <article>
-                            <img src="" alt="" />
-                            <h2>Cheeseburgers</h2>
-                            <button>
-                                <a href="#">Add to Cart</a>
-                            </button>
+                            <img
+                                src="./images/cheeseburgers.jpg"
+                                alt="Classic cheeseburgers with fries"
+                            />
+                            <div class="food-item-content">
+                                <h2>Cheeseburgers</h2>
+                                <a href="#" class="btn">Add to Cart</a>
+                            </div>
                         </article>
                     </li>
                 </ul>
